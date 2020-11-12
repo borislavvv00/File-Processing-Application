@@ -366,9 +366,10 @@ public class Task
 
 	private void initialize() 
 	{
-		frame = new JFrame();
+		frame = new JFrame("File Processing Application");
 		frame.setBounds(100, 100, 550, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		// Texts fields in which user can type text.
 		firstLineTextField = new JTextField();
