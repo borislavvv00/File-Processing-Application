@@ -13,3 +13,6 @@
  given range(to prevent null pointer exception) and throws exception if not.
 	Finally, if all input is correct the program does the given action. When swap is done, the program
  writes the data stored in the array list back into the file. And prints message on the console. 
+
+# Images
+<img src = "ImagesForReadMe/Img1.png" width = "800" height = "300"> <img src = "ImagesForReadMe/Img2.png" width = "800"  height = "300">
