@@ -100,7 +100,7 @@ public class Task
 	 * 
 	 * return type: void
 	 */
-	private void SwapLines(final int firstLineIndex, final int secondLineIndex)
+	private void swapLines(final int firstLineIndex, final int secondLineIndex)
 	{
 		ArrayList<String> temp = words.get(firstLineIndex);
 		words.set(firstLineIndex, words.get(secondLineIndex));
@@ -116,7 +116,7 @@ public class Task
 	 * 
 	 * return type: void
 	 */
-	private void SwapWords(final int firstLineIndex,final  int secondLineIndex,
+	private void swapWords(final int firstLineIndex,final  int secondLineIndex,
 			final int firstWordIndex, final int secondWordIndex)
 	{
 		String temp = words.get(firstLineIndex).get(firstWordIndex);
@@ -211,20 +211,20 @@ public class Task
 	 * 
 	 * return type: void
 	 */
-	private void Swap(final String firstLineWordIndex, final String secondLineWordIndex,
+	private void swap(final String firstLineWordIndex, final String secondLineWordIndex,
 			final int firstLineIndexInt, final int secondLineIndexInt)
 	{
 		// Swap lines.
 		if((secondLineWordIndex.length() == 0) && (firstLineWordIndex.length() == 0))
 		{
-			SwapLines(firstLineIndexInt, secondLineIndexInt);
+			swapLines(firstLineIndexInt, secondLineIndexInt);
 		}
 		else // Swap words.
 		{
 			int firstLineWordIndexInt = Integer.parseInt(firstLineWordIndex);
 			int secondLineWordIndexInt = Integer.parseInt(secondLineWordIndex);
 			
-			SwapWords(firstLineIndexInt, secondLineIndexInt, firstLineWordIndexInt, secondLineWordIndexInt);
+			swapWords(firstLineIndexInt, secondLineIndexInt, firstLineWordIndexInt, secondLineWordIndexInt);
 		}
 	}
 	
@@ -258,19 +258,27 @@ public class Task
 				
 				checkInput(firstLineWordIndex, txtpnFirstLineWord.getText(), words.get(firstLineIndexInt).size());
 				checkInput(secondLineWordIndex, txtpnSecondLineWord.getText(), words.get(secondLineIndexInt).size());
-			
-				Swap(firstLineWordIndex, secondLineWordIndex, firstLineIndexInt, secondLineIndexInt);
 				
-				try
+				// Swap is possible only if both firstLineWordIndex and secondLineWordIndex are empty or have value.
+				if(firstLineWordIndex.isEmpty() == secondLineWordIndex.isEmpty())
 				{
-					writeToFile();
+					swap(firstLineWordIndex, secondLineWordIndex, firstLineIndexInt, secondLineIndexInt);
+					
+					try
+					{
+						writeToFile();
+					}
+					catch(IOException e)
+					{
+						System.err.println(e.getMessage());
+					}
+					
+					System.out.println("Swap was done!");
 				}
-				catch(IOException e)
+				else
 				{
-					System.err.println(e.getMessage());
+					System.err.println("firstLineWordIndex and secondLineWordIndex both must be empty or have value.");
 				}
-				
-				System.out.println("Swap was done!");
 			}
 			catch(InputException e)
 			{
